@@ -1,6 +1,6 @@
 Arithmetic Parser
 =================
-EECS 348 Group 22 Github Repository
+EECS 348 Group 22
 -----------------------------------
 Members: Janna Dungao, Yoseph Ephrem, Mahdi Essawi, Shane Huang, Dalen Journigan, Beckett Malinowski
 
