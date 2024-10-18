@@ -1,8 +1,8 @@
        Date      |       Artifact(s) Worked On/Completed
 -------------------------------------------------------------
     09/26/24     |           Project Management Plan
-                 |
-                 |
+    10/16/24     |            Project Requirements
+    10/17/24     |            Project Requirements
                  |
                  |
                  |
