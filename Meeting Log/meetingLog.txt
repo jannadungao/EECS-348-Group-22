@@ -4,7 +4,7 @@
     10/16/24     |            Project Requirements
     10/17/24     |            Project Requirements
     10/20/24     |        Complete Project Requirements
-                 |
+    11/03/24     |            Project Architecture and Design
                  |
                  |
                  |
