@@ -794,7 +794,7 @@ QPushButton:pressed {
      <string>+/-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_21">
+   <widget class="QPushButton" name="DeleteLastButton">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -850,7 +850,7 @@ QPushButton:pressed {
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_22">
+   <widget class="QPushButton" name="CosButton">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -888,7 +888,7 @@ QPushButton:pressed {
      <string>cos</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_23">
+   <widget class="QPushButton" name="TanButton">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -1116,7 +1116,7 @@ QPushButton:pressed {
      <string>1/x</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_29">
+   <widget class="QPushButton" name="LnButton">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1239,7 +1239,7 @@ QPushButton:pressed {
      <string>x^2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_32">
+   <widget class="QPushButton" name="SinButton">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1277,7 +1277,7 @@ QPushButton:pressed {
      <string>sin</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_33">
+   <widget class="QPushButton" name="LogButton">
     <property name="geometry">
      <rect>
       <x>170</x>
