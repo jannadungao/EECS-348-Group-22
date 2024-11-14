@@ -184,7 +184,7 @@ void Calculator::MathButtonPressed(){
             QString LastNum = match.captured(1); // take the last digit
             int size = LastNum.length(); // get the length of the last number
 
-            currentExpression.chop(size); // remove last number from expression
+            currentExpression.chop(size-1); // remove last number from expression
             butVal = "(" + LastNum + "*" + LastNum + ")";
         }
 
