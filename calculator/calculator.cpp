@@ -15,6 +15,7 @@ double calcVal = 0.0; // track the current value of calculation
 QString currentExpression = "";  // Store the full expression
 QString displayExpression = ""; // the displayed expression
 int openParenthesesCount = 0; // track the number of open prentheses
+int closeparenthesesCount = 0; // track the number of closed parentheses
 
 // last math button clicked on - keep track of the buttons that has been clicked on
 bool DivTrigger  = false;
@@ -253,7 +254,7 @@ void Calculator::EqualButtonPressed(){
     // Prepare the expression to ensure it uses Math functions correctly
     // For example, we need to make sure the expression uses Math.sin, Math.cos, etc.
     QString expression = currentExpression;
-    qDebug() << expression;
+
     // Replace any trigonometric function references with the proper Math functions
     //expression.replace("sin", "Math.sin");
     //expression.replace("cos", "Math.cos");
@@ -262,7 +263,17 @@ void Calculator::EqualButtonPressed(){
     //expression.replace("acos", "Math.acos");
     //expression.replace("atan", "Math.atan");
     //expression.replace("atan2", "Math.atan2");
+    //qDebug() << openParenthesesCount << closeparenthesesCount;
 
+    // while loop that closes all the parentheses that are still open
+    if (openParenthesesCount > closeparenthesesCount){
+        while (openParenthesesCount > closeparenthesesCount){
+            expression += ")";
+            closeparenthesesCount += 1;
+        }
+    }
+
+    qDebug() << expression;
     // Evaluate the expression using QJSEngine
     QJSValue result = engine.evaluate(expression);
 
@@ -283,6 +294,9 @@ void Calculator::EqualButtonPressed(){
         displayExpression = QString::number(solution);
     }
 
+    // reset the parentheses back to zero for the next operations
+    openParenthesesCount = 0;
+    closeparenthesesCount = 0;
 }
 
 void Calculator::ChangeNumberSign(){
@@ -487,11 +501,13 @@ void Calculator::PrenthesesPressed(){
     if (displayVal.isEmpty() || isOperator(displayVal[displayVal.length() - 1]) || displayVal.endsWith("(") || (displayVal.length() == 1 && displayVal.endsWith('0'))) {
         currentExpression += "(";  // Add opening parenthesis
         displayExpression += "(";  // Update the display
+        openParenthesesCount += 1; // increment the open parentheses by 1
     }
     // Case 2: If there is already an open parenthesis, and the last character is a number or a closing parenthesis, we can close a parenthesis.
     else if (isNumberOrClosedParenthesis(displayVal[displayVal.length() - 1])) {
         currentExpression += ")";  // Add closing parenthesis
         displayExpression += ")";  // Update the display
+        closeparenthesesCount += 1; // increment the close parentheses by 1
     }
 
     // Update the display
@@ -601,6 +617,8 @@ void Calculator::TrigButtonPressed(){
         currentExpression += butVal + "(";
         displayExpression += displayValue + "(";
     }
+
+    openParenthesesCount += 1; // increment the open parentheses by 1
 
     // Update the display with the current expression
     ui->Display->setText(displayExpression);
