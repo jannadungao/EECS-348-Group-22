@@ -30,6 +30,8 @@ private slots: // slots are going to be executed whenever a signal is submitted 
     void NumPressed(); // handles the numbers 0-9
     void MathButtonPressed(); // handles all simple math
     void TrigButtonPressed(); // handles all trig functions
+    void PiButtonPressed();   // handles the Pi button
+    void ExponentialButtonPressed(); // handles the exponential e
     void PrenthesesPressed(); // handles prentheses placement
     void ChangeNumberSign();  // handles changing the sign (+/-)
     void EqualButtonPressed(); // outputs the answer

@@ -964,7 +964,7 @@ QPushButton:pressed {
      <string>abs</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_25">
+   <widget class="QPushButton" name="PiButton">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -1040,7 +1040,7 @@ QPushButton:pressed {
      <string>x^y</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_27">
+   <widget class="QPushButton" name="ExponentialButton">
     <property name="geometry">
      <rect>
       <x>270</x>

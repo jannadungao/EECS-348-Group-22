@@ -80,6 +80,10 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->LogButton, SIGNAL(released()), this, SLOT(TrigButtonPressed()));
     connect(ui->AbsButton, SIGNAL(released()), this, SLOT(TrigButtonPressed()));
 
+    connect(ui->PiButton, SIGNAL(released()), this, SLOT(PiButtonPressed()));
+
+    connect(ui->ExponentialButton, SIGNAL(released()), this, SLOT(ExponentialButtonPressed()));
+
 }
 
 Calculator::~Calculator() // deconstructor
@@ -314,6 +318,8 @@ void Calculator::EqualButtonPressed(){
     // reset the parentheses back to zero for the next operations
     openParenthesesCount = 0;
     closeparenthesesCount = 0;
+
+    //qDebug() << openParenthesesCount << closeparenthesesCount;
 }
 
 // It makes some issues -
@@ -428,6 +434,10 @@ void Calculator::ClearButtonPressed(){
     LogTrigger  = false;
     LnTrigger   = false;
     AbsTrigger  = false;
+
+    //reset parentheses
+    openParenthesesCount = 0;
+    closeparenthesesCount = 0;
 }
 
 // PROBLEM HERE - IT ONLY WORK ONCE (for the first time)!!!!!!!!!!!!
@@ -647,4 +657,46 @@ void Calculator::TrigButtonPressed(){
     ui->Display->setText(displayExpression);
 
 
+}
+
+
+void Calculator::PiButtonPressed(){
+    // get the display value
+    QString displayVal = ui->Display->text();
+
+    // Double Check Again, we can do it by giving priority to the last clicked operation!!!!!!!!!!!!!!!!
+    if (displayVal.back().isDigit() && displayVal.length() != 1 && displayVal.endsWith("0")){
+        return;
+    }
+
+    // check sender to see which operation was clicked
+    QPushButton *button = (QPushButton *)sender();
+    QString butVal = button->text();
+
+    currentExpression += "(Math.PI)";
+    displayExpression += butVal;
+
+
+    ui->Display->setText(displayExpression);
+}
+
+
+void Calculator::ExponentialButtonPressed(){
+    // get the display value
+    QString displayVal = ui->Display->text();
+
+    // Double Check Again, we can do it by giving priority to the last clicked operation!!!!!!!!!!!!!!!!
+    if (displayVal.back().isDigit() && displayVal.length() != 1 && displayVal.endsWith("0")){
+        return;
+    }
+
+    // check sender to see which operation was clicked
+    QPushButton *button = (QPushButton *)sender();
+    QString butVal = button->text();
+
+    currentExpression += "(Math.exp(1))";
+    displayExpression += butVal;
+
+
+    ui->Display->setText(displayExpression);
 }
