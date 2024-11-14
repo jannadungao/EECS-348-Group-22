@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/EECS_348/calculator
+# Install script for directory: C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/calculator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

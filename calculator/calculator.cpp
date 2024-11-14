@@ -29,6 +29,7 @@ bool TanTrigger  = false;
 bool LogTrigger  = false;
 bool LnTrigger   = false;
 bool DecimalTrigger = true;
+bool AbsTrigger  = false;
 
 
 Calculator::Calculator(QWidget *parent)
@@ -58,6 +59,7 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->Multiply, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->Divide, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->Percent, SIGNAL(released()), this, SLOT(MathButtonPressed()));
+    connect(ui->Squared_Power, SIGNAL(released()), this, SLOT(MathButtonPressed()));
 
     connect(ui->Equals, SIGNAL(released()), this, SLOT(EqualButtonPressed()));
 
@@ -76,6 +78,7 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->TanButton, SIGNAL(released()), this, SLOT(TrigButtonPressed()));
     connect(ui->LnButton, SIGNAL(released()), this, SLOT(TrigButtonPressed()));
     connect(ui->LogButton, SIGNAL(released()), this, SLOT(TrigButtonPressed()));
+    connect(ui->AbsButton, SIGNAL(released()), this, SLOT(TrigButtonPressed()));
 
 }
 
@@ -133,7 +136,7 @@ void Calculator::MathButtonPressed(){
     QString displayVal = ui->Display->text();
 
     // Double Check Again, we can do it by giving priority to the last clicked operation!!!!!!!!!!!!!!!!
-    if (displayVal.isEmpty() || displayVal.endsWith(" ") || displayVal.endsWith("+") || displayVal.endsWith("-") || displayVal.endsWith("x") || displayVal.endsWith("÷")){
+    if (displayVal.isEmpty() || displayVal.endsWith(" ") || displayVal.endsWith("+") || displayVal.endsWith("-") || displayVal.endsWith("x") || displayVal.endsWith("÷") || (displayVal.length()==1 && displayVal.endsWith("0"))){
         return;
     }
 
@@ -167,6 +170,20 @@ void Calculator::MathButtonPressed(){
     else if (QString::compare(butVal, "%", Qt::CaseInsensitive) == 0){
         butVal = "/100";
         PerTrigger = true;
+    }
+    else if (QString::compare(butVal, "^2", Qt::CaseInsensitive) == 0){
+        // Regular expression to find the last number in the expression
+        QRegularExpression regex("([-+]?[0-9]*\\.?[0-9]+)(?=[^0-9]*$)");
+
+        QRegularExpressionMatch match = regex.match(displayVal); // Perform the match
+        if (match.hasMatch()){
+            QString LastNum = match.captured(1); // take the last digit
+            int size = LastNum.length(); // get the length of the last number
+
+            currentExpression.chop(size); // remove last number from expression
+            butVal = "(" + LastNum + "*" + LastNum + ")";
+        }
+
     }
     //ui->Display->setText(""); // clear display because we are about to enter a new number
 
@@ -299,6 +316,7 @@ void Calculator::EqualButtonPressed(){
     closeparenthesesCount = 0;
 }
 
+// It makes some issues -
 void Calculator::ChangeNumberSign(){
     /*
     QString displayVal = ui->Display->text(); //get the value in the display
@@ -409,6 +427,7 @@ void Calculator::ClearButtonPressed(){
     TanTrigger  = false;
     LogTrigger  = false;
     LnTrigger   = false;
+    AbsTrigger  = false;
 }
 
 // PROBLEM HERE - IT ONLY WORK ONCE (for the first time)!!!!!!!!!!!!
@@ -605,6 +624,10 @@ void Calculator::TrigButtonPressed(){
     else if (QString::compare(butVal, "log", Qt::CaseInsensitive) == 0) {
         butVal = "Math.log10";  // log(x) in JS is Math.log10(x)
         LogTrigger = true;
+    }
+    else if (QString::compare(butVal, "abs", Qt::CaseInsensitive) == 0){
+        butVal = "Math.abs";
+        AbsTrigger = true;
     }
 
     // Ensure that a number follows the function, i.e., append an opening parenthesis if necessary

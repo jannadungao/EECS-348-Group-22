@@ -926,7 +926,7 @@ QPushButton:pressed {
      <string>tan</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_24">
+   <widget class="QPushButton" name="AbsButton">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -961,7 +961,7 @@ QPushButton:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>|x|</string>
+     <string>abs</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_25">
@@ -1201,7 +1201,7 @@ QPushButton:pressed {
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_31">
+   <widget class="QPushButton" name="Squared_Power">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -1236,7 +1236,7 @@ QPushButton:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>x^2</string>
+     <string>^2</string>
     </property>
    </widget>
    <widget class="QPushButton" name="SinButton">
