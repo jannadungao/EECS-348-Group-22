@@ -1,8 +1,11 @@
-       Date      |       Artifact(s) Worked On/Completed         |           Members Present
+       Date      |       Artifact(s) Worked On/Completed                |           Members Present
 -------------------------------------------------------------------------------------------------------
-    09/26/24     |           Project Management Plan             |            All Members
-    10/16/24     |            Project Requirements               |            All Members
-    10/17/24     |            Project Requirements               |            All Members
-    10/20/24     |        Complete Project Requirements          |            All Members
-    11/03/24     |        Project Architecture and Design        |            All Members
-    11/08/24     |        Project Architecture and Design        |            All Members
+    09/26/24     |           Project Management Plan                    |            All Members
+    10/16/24     |            Project Requirements                      |            All Members
+    10/17/24     |            Project Requirements                      |            All Members
+    10/20/24     |        Complete Project Requirements                 |            All Members
+    11/03/24     |        Project Architecture and Design               |            All Members
+    11/08/24     |        Project Architecture and Design               |            All Members
+    11/18/24     |Project Implementation: Fix bugs and run test cases   |            All Members
+    11/18/24     |      Test Cases & User Manual Document Drafting      |            All Members
+
