@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>832</width>
+    <width>801</width>
     <height>600</height>
    </rect>
   </property>
@@ -35,11 +35,20 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>0.0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="Multiply">
@@ -1002,7 +1011,7 @@ QPushButton:pressed {
      <string>π</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_26">
+   <widget class="QPushButton" name="PowerButton">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -1037,7 +1046,7 @@ QPushButton:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>x^y</string>
+     <string>^(</string>
     </property>
    </widget>
    <widget class="QPushButton" name="ExponentialButton">
@@ -1154,7 +1163,7 @@ QPushButton:pressed {
      <string>ln</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_30">
+   <widget class="QPushButton" name="eToPower">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1189,7 +1198,7 @@ QPushButton:pressed {
 }</string>
     </property>
     <property name="text">
-     <string>e^x</string>
+     <string>e^(</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
@@ -1315,7 +1324,7 @@ QPushButton:pressed {
      <string>log</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_34">
+   <widget class="QPushButton" name="HistoryButton">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -1410,7 +1419,7 @@ QPushButton:pressed {
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_36">
+   <widget class="QPushButton" name="CopyButton">
     <property name="geometry">
      <rect>
       <x>170</x>

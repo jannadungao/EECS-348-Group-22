@@ -38,6 +38,7 @@ private slots: // slots are going to be executed whenever a signal is submitted 
     void ClearButtonPressed(); // clear and reset the calculator
     void DecimalButtonPressed(); // adding a decimal point
     void DeleteLast(); // delete last number or operation
-    //void HistoryPressed();    // function that will show past operations (Not sure yet)
+    void HistoryButtonPressed();    // function that will show past operations (Not sure yet)
+    void ClipboardButtonPressed(); // function that will allow you to copy the current expression that is on the display
 };
 #endif // CALCULATOR_H

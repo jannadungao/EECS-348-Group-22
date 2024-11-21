@@ -7,6 +7,12 @@
 #include <QJSEngine>
 #include <QJSValue>
 #include <QDebug>
+#include <QMessageBox>
+#include <QStringList>
+#include <QClipboard>
+
+
+//#include <iostream>
 
 #include <cmath>
 
@@ -16,6 +22,8 @@ QString currentExpression = "";  // Store the full expression
 QString displayExpression = ""; // the displayed expression
 int openParenthesesCount = 0; // track the number of open prentheses
 int closeparenthesesCount = 0; // track the number of closed parentheses
+
+QList<QString> history; // track history
 
 // last math button clicked on - keep track of the buttons that has been clicked on
 bool DivTrigger  = false;
@@ -60,6 +68,8 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->Divide, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->Percent, SIGNAL(released()), this, SLOT(MathButtonPressed()));
     connect(ui->Squared_Power, SIGNAL(released()), this, SLOT(MathButtonPressed()));
+    connect(ui->PowerButton, SIGNAL(released()), this, SLOT(MathButtonPressed()));
+    connect(ui->eToPower, SIGNAL(released()), this, SLOT(MathButtonPressed()));
 
     connect(ui->Equals, SIGNAL(released()), this, SLOT(EqualButtonPressed()));
 
@@ -83,6 +93,11 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->PiButton, SIGNAL(released()), this, SLOT(PiButtonPressed()));
 
     connect(ui->ExponentialButton, SIGNAL(released()), this, SLOT(ExponentialButtonPressed()));
+
+    connect(ui->HistoryButton, SIGNAL(released()), this, SLOT(HistoryButtonPressed()));
+
+    connect(ui->CopyButton, SIGNAL(released()), this, SLOT(ClipboardButtonPressed()));
+
 
 }
 
@@ -172,21 +187,117 @@ void Calculator::MathButtonPressed(){
         SubTrigger = true;
     }
     else if (QString::compare(butVal, "%", Qt::CaseInsensitive) == 0){
-        butVal = "/100";
+        butVal = "%";
         PerTrigger = true;
     }
+    /*
     else if (QString::compare(butVal, "^2", Qt::CaseInsensitive) == 0){
         // Regular expression to find the last number in the expression
-        QRegularExpression regex("([-+]?[0-9]*\\.?[0-9]+)(?=[^0-9]*$)");
+        QRegularExpression regex("([-+]?[0-9]*\\.?[0-9]+|Math\\.PI|Math\\.exp\\(1\\)|\\([\\d\\+\\-\\*\\/\\^\\.\\(\\)]*\\))(?=[^0-9]*$)");
 
-        QRegularExpressionMatch match = regex.match(displayVal); // Perform the match
+        QRegularExpressionMatch match = regex.match(currentExpression); // Perform the match
         if (match.hasMatch()){
-            QString LastNum = match.captured(1); // take the last digit
-            int size = LastNum.length(); // get the length of the last number
+            QString lastNum = match.captured(1); // take the last digit
+            int size = lastNum.length(); // get the length of the last number
 
-            currentExpression.chop(size-1); // remove last number from expression
-            butVal = "(" + LastNum + "*" + LastNum + ")";
+            if (lastNum.at(0).isDigit()){
+                currentExpression.chop(size);
+            }
+            else{
+                currentExpression.chop(size-1);
+            }
+            //currentExpression.chop(size);
+            // Replace 'pi' with the actual value of pi
+            //lastNum.replace("π", QString::number(M_PI));
+
+            // Replace 'e' with the actual value of e
+            //lastNum.replace("e", QString::number(M_E));
+
+            //currentExpression.chop(size-1); // remove last number from expression
+            //butVal = "(" + lastNum + "*" + lastNum + ")";
+
+            // Handle expressions in parentheses: if there is a parenthesis, we need to handle it properly.
+            //if (lastNum.startsWith("(") && lastNum.endsWith(")")) {
+                // Recursively handle the expression inside parentheses
+                //lastNum = lastNum.mid(1, lastNum.length() - 2); // Remove the parentheses
+            //}
+
+
+
+            // Square the number
+            //double squaredValue = std::pow(value, 2);  // Square the captured number
+
+            // Update the current expression with the squared value in parentheses (for clarity)
+
+              // Remove the old value or expression
+            butVal = "Math.pow(" + lastNum + ",2)";
+            ///currentExpression += "pow(" + lastNum + ",2)";
+            //displayExpression += butVal;  // Update the display to show the result of squaring
+            //ui->Display->setText(displayExpression); // Update UI
         }
+        */
+    // Check for power operations (square or custom power)
+    else if (QString::compare(butVal, "^2", Qt::CaseInsensitive) == 0 || QString::compare(butVal, "^(", Qt::CaseInsensitive) == 0 || QString::compare(butVal, "e^(", Qt::CaseInsensitive) == 0) {
+        // Apply regex to the current expression, not displayVal
+        QRegularExpression regex("([-+]?[0-9]*\\.?[0-9]+|Math\\.PI|Math\\.exp\\(1\\)|\\([\\d\\+\\-\\*\\/\\^\\.\\(\\)]*\\))(?=[^0-9]*$)");
+        QRegularExpressionMatch match = regex.match(currentExpression);
+
+        if (match.hasMatch()) {
+            // regex that match with string that contain only digits (might create a function for it)
+            QRegularExpression regex("^\\d+$");
+
+
+            // Capture the last valid number or expression
+            QString lastNum = match.captured(1);
+            int size = lastNum.length(); // Get the length of the last matched part
+
+            qDebug() << "this is it" << lastNum;
+            qDebug() << "this is it" << currentExpression;
+            qDebug() << "this is it" << size;
+
+            // Remove the old number or expression from currentExpression
+            if ((lastNum == "Math.PI" || lastNum == "Math.exp(1)")){
+                currentExpression.chop(size+2);
+            }
+            else if(regex.match(lastNum).hasMatch()){ // checks if lastNum made of only digits
+                currentExpression.chop(size);
+            }
+            else{
+                currentExpression.chop(size-1);
+            }
+
+            qDebug() << "this is ittt" << currentExpression;
+
+            // Now apply the power operation
+            QString powerExpression;
+
+            // If the operation is squaring (i.e., "^2"), we wrap the number in Math.pow
+            if (butVal == "^2") {
+                powerExpression = "(Math.pow(" + lastNum + ", 2))";
+            }
+            // If the operation is a custom power, handle it
+            else if (butVal == "^(") {
+                // If the user clicked a specific exponent, extract it from the button label (e.g., "^3")
+                //QString exponent = butVal.mid(1);  // Extract the exponent after '^' (e.g., "^3" becomes 3)
+                powerExpression = "Math.pow(" + lastNum + ", ";
+
+                qDebug() << "assa "<<powerExpression; // debugging
+
+                openParenthesesCount += 1;
+            }
+
+            // change its position, to the pi and e function
+            // if operation is e to the power
+            /*
+            else if(butVal == "e^("){
+                powerExpression = "Math.pow(Math.exp(1), ";
+                openParenthesesCount += 1;
+            }
+            */
+
+            butVal = powerExpression;
+        }
+
 
     }
     //ui->Display->setText(""); // clear display because we are about to enter a new number
@@ -241,10 +352,10 @@ void Calculator::EqualButtonPressed(){
     }
     */
 
-    /*
     // Initialize the QSEngine
     QJSEngine engine;
 
+    /*
     // set up the expression to be evaluated
     QString expression = currentExpression;
 
@@ -265,54 +376,113 @@ void Calculator::EqualButtonPressed(){
         displayExpression = QString::number(solution);
     }
     */
+    // Add it to history:
 
-    // Initialize the QJSEngine
-    QJSEngine engine;
+    //
+    // Function to add an element and maintain the size limit
+    // Add elements to the history
+    QString history_expression;
+    QString final_history;
 
-    // Ensure Math functions are available in the global context
-    engine.globalObject().setProperty("Math", engine.evaluate("Math"));
+    QString displayVal = ui->Display->text();
+    qDebug() << displayVal;
 
-    // Prepare the expression to ensure it uses Math functions correctly
-    // For example, we need to make sure the expression uses Math.sin, Math.cos, etc.
-    QString expression = currentExpression;
+    if (displayVal != displayExpression){
 
-    // Replace any trigonometric function references with the proper Math functions
-    //expression.replace("sin", "Math.sin");
-    //expression.replace("cos", "Math.cos");
-    //expression.replace("tan", "Math.tan");
-    //expression.replace("asin", "Math.asin");
-    //expression.replace("acos", "Math.acos");
-    //expression.replace("atan", "Math.atan");
-    //expression.replace("atan2", "Math.atan2");
-    //qDebug() << openParenthesesCount << closeparenthesesCount;
+        // Define a regex that allows digits, operators, parentheses, and whitespace
+        QRegularExpression regex("^[0-9\\+\\-\\*\\/\\%\\(\\)\\s]*$");
 
-    // while loop that closes all the parentheses that are still open
-    if (openParenthesesCount > closeparenthesesCount){
-        while (openParenthesesCount > closeparenthesesCount){
-            expression += ")";
-            closeparenthesesCount += 1;
+        // Match the expression against the regex
+        QRegularExpressionMatch match = regex.match(displayVal);
+
+        // If the match is invalid, show an error
+        if (!match.hasMatch()) {
+            //qDebug() << "Error: " << displayVal.toString();
+            ui->Display->setText("Error");
+        }
+        else {
+            // Initialize the QJSEngine
+            //QJSEngine engine;
+            history_expression = displayVal;
+
+
+            QJSValue kk = engine.evaluate(displayVal);
+            double sol = kk.toNumber();
+            ui->Display->setText(QString::number(sol));
+
+            final_history = history_expression + " = " + QString::number(sol);
+
+            if (history.size() >= 10) {
+                history.removeFirst(); // Remove the oldest entry
+            }
+            history.append(final_history);
         }
     }
-
-    qDebug() << expression;
-    // Evaluate the expression using QJSEngine
-    QJSValue result = engine.evaluate(expression);
-
-    // Handle error in case of an invalid expression
-    if (result.isError()) {
-        qDebug() << "Error: " << result.toString();
-        ui->Display->setText("Error");
-        currentExpression = "";
-        displayExpression = "";
-    }
     else {
-        double solution = result.toNumber();
-        // Display the result in the UI
-        ui->Display->setText(QString::number(solution));
+        // Ensure Math functions are available in the global context
+        engine.globalObject().setProperty("Math", engine.evaluate("Math"));
 
-        // Update the current expression to the result
-        currentExpression = QString::number(solution); // Store the result for further calculations
-        displayExpression = QString::number(solution);
+        // Prepare the expression to ensure it uses Math functions correctly
+        // For example, we need to make sure the expression uses Math.sin, Math.cos, etc.
+        QString expression = currentExpression;
+
+        history_expression = displayExpression;
+        // Replace any trigonometric function references with the proper Math functions
+        //expression.replace("sin", "Math.sin");
+        //expression.replace("cos", "Math.cos");
+        //expression.replace("tan", "Math.tan");
+        //expression.replace("asin", "Math.asin");
+        //expression.replace("acos", "Math.acos");
+        //expression.replace("atan", "Math.atan");
+        //expression.replace("atan2", "Math.atan2");
+        //qDebug() << openParenthesesCount << closeparenthesesCount;
+
+        // while loop that closes all the parentheses that are still open
+        if (openParenthesesCount > closeparenthesesCount){
+            while (openParenthesesCount > closeparenthesesCount){
+                expression += ")";
+                closeparenthesesCount += 1;
+            }
+        }
+
+        qDebug() << expression;
+        // Evaluate the expression using QJSEngine
+        QJSValue result = engine.evaluate(expression);
+
+        double solution = result.isNumber();
+
+        // Handle error in case of an invalid expression
+        if (result.isError()) {
+            qDebug() << "Error: " << result.toString();
+            ui->Display->setText("Error");
+            currentExpression = "";
+            displayExpression = "";
+        }
+        else if(std::isinf(solution)){
+            //qDebug() << result.toString();
+            ui->Display->setText("Undifiend");
+            currentExpression = "";
+            displayExpression = "";
+        }
+        else {
+            double solution = result.toNumber();
+            // Display the result in the UI
+            ui->Display->setText(QString::number(solution));
+
+
+            // Update the current expression to the result
+            currentExpression = QString::number(solution); // Store the result for further calculations
+            displayExpression = QString::number(solution);
+
+
+            final_history = history_expression + " = " + displayExpression;
+
+            if (history.size() >= 10) {
+                history.removeFirst(); // Remove the oldest entry
+            }
+            history.append(final_history);
+
+        }
     }
 
     // reset the parentheses back to zero for the next operations
@@ -320,6 +490,7 @@ void Calculator::EqualButtonPressed(){
     closeparenthesesCount = 0;
 
     //qDebug() << openParenthesesCount << closeparenthesesCount;
+
 }
 
 // It makes some issues -
@@ -474,7 +645,7 @@ void Calculator::DecimalButtonPressed(){
     //}
     currentExpression = displayVal;
     displayExpression = displayVal;
-    ui->Display->setText(displayVal);
+    ui->Display->setText(displayExpression);
     //ui->Display->setText(displayExpression);
 
     DecimalTrigger = false;
@@ -564,7 +735,7 @@ bool Calculator::isValidParenthesisPlacement() {
 }
 // Check if the given character is an operator
 bool Calculator::isOperator(const QChar &ch) {
-    return (ch == "+" || ch == "-" || ch == "*" || ch == "/");
+    return (ch == "+" || ch == "-" || ch == "*" || ch == "/" || ch == "x" || ch == "÷");
 }
 
 // Check if the given character is a number or a closing parenthesis
@@ -699,4 +870,27 @@ void Calculator::ExponentialButtonPressed(){
 
 
     ui->Display->setText(displayExpression);
+}
+
+
+void Calculator::HistoryButtonPressed() {
+    QString historyText;
+
+    // Concatenate all history items
+    for (const QString &entry : history) {
+        historyText += entry + "\n";
+    }
+
+    // Show history in a message box
+    QMessageBox::information(this, "History", historyText.isEmpty() ? "No history available." : historyText);
+}
+
+
+void Calculator::ClipboardButtonPressed(){
+    QString expression = ui->Display->text();  // Get the text from the display
+
+    // Copy the expression to the clipboard
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(expression);  // Set the text to clipboard
+
 }
