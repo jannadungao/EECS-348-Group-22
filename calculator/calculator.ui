@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>801</width>
-    <height>600</height>
+    <width>704</width>
+    <height>295</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>741</width>
+      <width>681</width>
       <height>71</height>
      </rect>
     </property>
@@ -54,7 +54,7 @@
    <widget class="QPushButton" name="Multiply">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>610</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -91,7 +91,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="ClearButton">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>
@@ -128,7 +128,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Prentheseses">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>410</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>
@@ -165,7 +165,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Percent">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>510</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>
@@ -202,7 +202,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Divide">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>610</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>
@@ -239,7 +239,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Subtract">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>610</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -276,7 +276,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Add">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>610</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -313,7 +313,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Equals">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>610</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -350,7 +350,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button8">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>410</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -388,7 +388,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button9">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>510</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -426,7 +426,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button7">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -464,7 +464,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button5">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>410</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -502,7 +502,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button6">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>510</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -540,7 +540,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button4">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -578,7 +578,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button2">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>410</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -616,7 +616,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button3">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>510</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -654,7 +654,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button1">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -692,7 +692,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Button0">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>410</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -730,7 +730,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="DecimalButton">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>510</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -768,7 +768,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="ChangeSign">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>310</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -809,7 +809,7 @@ QPushButton:pressed {
     </property>
     <property name="geometry">
      <rect>
-      <x>680</x>
+      <x>620</x>
       <y>50</y>
       <width>80</width>
       <height>24</height>
@@ -862,7 +862,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="CosButton">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>110</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -900,7 +900,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="TanButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>210</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -938,7 +938,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="AbsButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -976,7 +976,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="PiButton">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>110</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -1014,7 +1014,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="PowerButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>210</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -1052,7 +1052,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="ExponentialButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>210</x>
       <y>260</y>
       <width>80</width>
       <height>24</height>
@@ -1090,7 +1090,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="pushButton_28">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>210</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -1128,7 +1128,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="LnButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -1166,7 +1166,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="eToPower">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -1213,7 +1213,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="Squared_Power">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>110</x>
       <y>220</y>
       <width>80</width>
       <height>24</height>
@@ -1251,7 +1251,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="SinButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>140</y>
       <width>80</width>
       <height>24</height>
@@ -1289,7 +1289,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="LogButton">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>110</x>
       <y>180</y>
       <width>80</width>
       <height>24</height>
@@ -1327,7 +1327,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="HistoryButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>10</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>
@@ -1368,7 +1368,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="pushButton_35">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>210</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>
@@ -1422,7 +1422,7 @@ QPushButton:pressed {
    <widget class="QPushButton" name="CopyButton">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>110</x>
       <y>100</y>
       <width>80</width>
       <height>24</height>

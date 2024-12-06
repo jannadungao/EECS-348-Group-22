@@ -119,23 +119,6 @@ void Calculator::NumPressed(){
     displayExpression += butVal;
     ui->Display->setText(displayExpression);
 
-    /*
-    if((displayVal.toDouble()==0) || (displayVal.toDouble()==0.0)){
-        //ui->Display->setText(butVal); // display whatever the button value is
-
-        //currentExpression += butVal;
-        // ui->Display->setText(currentExpression); // display whatever the button value is
-    }
-    else{
-        QString newVal = displayVal + butVal; // you add the numbers and store them in newVal
-        double dblNewVal = newVal.toDouble(); // switch it to double
-        //ui->Display->setText(QString::number(dblNewVal, 'g', 16)); // display it
-
-        // Append the number to the current expression and update the display
-        //currentExpression += newVal;
-        //ui->Display->setText(currentExpression);
-    }
-    */
 }
 
 void Calculator::MathButtonPressed(){
@@ -190,52 +173,7 @@ void Calculator::MathButtonPressed(){
         butVal = "%";
         PerTrigger = true;
     }
-    /*
-    else if (QString::compare(butVal, "^2", Qt::CaseInsensitive) == 0){
-        // Regular expression to find the last number in the expression
-        QRegularExpression regex("([-+]?[0-9]*\\.?[0-9]+|Math\\.PI|Math\\.exp\\(1\\)|\\([\\d\\+\\-\\*\\/\\^\\.\\(\\)]*\\))(?=[^0-9]*$)");
 
-        QRegularExpressionMatch match = regex.match(currentExpression); // Perform the match
-        if (match.hasMatch()){
-            QString lastNum = match.captured(1); // take the last digit
-            int size = lastNum.length(); // get the length of the last number
-
-            if (lastNum.at(0).isDigit()){
-                currentExpression.chop(size);
-            }
-            else{
-                currentExpression.chop(size-1);
-            }
-            //currentExpression.chop(size);
-            // Replace 'pi' with the actual value of pi
-            //lastNum.replace("π", QString::number(M_PI));
-
-            // Replace 'e' with the actual value of e
-            //lastNum.replace("e", QString::number(M_E));
-
-            //currentExpression.chop(size-1); // remove last number from expression
-            //butVal = "(" + lastNum + "*" + lastNum + ")";
-
-            // Handle expressions in parentheses: if there is a parenthesis, we need to handle it properly.
-            //if (lastNum.startsWith("(") && lastNum.endsWith(")")) {
-                // Recursively handle the expression inside parentheses
-                //lastNum = lastNum.mid(1, lastNum.length() - 2); // Remove the parentheses
-            //}
-
-
-
-            // Square the number
-            //double squaredValue = std::pow(value, 2);  // Square the captured number
-
-            // Update the current expression with the squared value in parentheses (for clarity)
-
-              // Remove the old value or expression
-            butVal = "Math.pow(" + lastNum + ",2)";
-            ///currentExpression += "pow(" + lastNum + ",2)";
-            //displayExpression += butVal;  // Update the display to show the result of squaring
-            //ui->Display->setText(displayExpression); // Update UI
-        }
-        */
     // Check for power operations (square or custom power)
     else if (QString::compare(butVal, "^2", Qt::CaseInsensitive) == 0 || QString::compare(butVal, "^(", Qt::CaseInsensitive) == 0 || QString::compare(butVal, "e^(", Qt::CaseInsensitive) == 0) {
         // Apply regex to the current expression, not displayVal
@@ -286,22 +224,11 @@ void Calculator::MathButtonPressed(){
                 openParenthesesCount += 1;
             }
 
-            // change its position, to the pi and e function
-            // if operation is e to the power
-            /*
-            else if(butVal == "e^("){
-                powerExpression = "Math.pow(Math.exp(1), ";
-                openParenthesesCount += 1;
-            }
-            */
-
             butVal = powerExpression;
         }
 
 
     }
-    //ui->Display->setText(""); // clear display because we are about to enter a new number
-
 
     // Append the operator to the current expression and update the display
     currentExpression += butVal;  // Add spaces around operators for better formatting
@@ -312,73 +239,12 @@ void Calculator::MathButtonPressed(){
 }
 
 void Calculator::EqualButtonPressed(){
-
-    /*
-    // if an equal button is pressed - submission
-    double solution = 0.0;
-
-    // get the value that is in the display to perform set calculation
-    QString displayVal = ui->Display->text();
-
-    // store it - and switch it to double
-    double dblDisplayVal = displayVal.toDouble(); // THE PROBLEM IS HERE - THIS WOULD BE AN EXPRESSION AND IT CAN'T BE TURNED INTO DOUBLE
-
-    // make sure that an operation was pressed
-    if (AddTrigger || SubTrigger || DivTrigger || MultTrigger || PerTrigger){
-        if (AddTrigger){
-            solution = calcVal + dblDisplayVal;
-        }
-        else if (SubTrigger){
-            solution = calcVal - dblDisplayVal;
-        }
-        else if (MultTrigger){
-            solution = calcVal * dblDisplayVal;
-        }
-        else if (DivTrigger){
-            if (dblDisplayVal != 0){
-                solution = calcVal / dblDisplayVal;
-            }
-            else{
-                solution = 0; // handle division by zero error - raise an error maybe (or do not allow them to press =)
-            }
-        }
-        else if (PerTrigger){
-            solution = calcVal * (dblDisplayVal / 100.0);
-        }
-
-        // display the result on the UI
-        ui->Display->setText(QString::number(solution));
-        currentExpression = QString::number(solution); // modified
-    }
-    */
-
     // Initialize the QSEngine
+    const double EPSILON = 1e-6; // Near-zero threshold
     QJSEngine engine;
 
-    /*
-    // set up the expression to be evaluated
-    QString expression = currentExpression;
-
-    //evaluate the expression
-    QJSValue result = engine.evaluate(expression);
-
-    // handle error
-    if (result.isError()){
-        qDebug() << "Error: "<< result.toString();
-    }
-    else{
-        double solution = result.toNumber();
-        // Display the result in the UI
-        ui->Display->setText(QString::number(solution));
-
-        // Update the current expression to the result
-        currentExpression = QString::number(solution); // Store the result for further calculations
-        displayExpression = QString::number(solution);
-    }
-    */
     // Add it to history:
 
-    //
     // Function to add an element and maintain the size limit
     // Add elements to the history
     QString history_expression;
@@ -387,27 +253,37 @@ void Calculator::EqualButtonPressed(){
     QString displayVal = ui->Display->text();
     qDebug() << displayVal;
 
+    QRegularExpression trigRegex("\\b(sin|cos|tan)\\b");
+
+    if (displayVal.contains("/0") || displayVal.contains("/0.0") || displayVal.contains("÷0") || displayVal.contains("÷0.0")) {
+        ui->Display->setText("Undefined");
+        return; // Exit to avoid further evaluation
+    }
+
     if (displayVal != displayExpression){
 
         // Define a regex that allows digits, operators, parentheses, and whitespace
         QRegularExpression regex("^[0-9\\+\\-\\*\\/\\%\\(\\)\\s]*$");
+
 
         // Match the expression against the regex
         QRegularExpressionMatch match = regex.match(displayVal);
 
         // If the match is invalid, show an error
         if (!match.hasMatch()) {
-            //qDebug() << "Error: " << displayVal.toString();
             ui->Display->setText("Error");
         }
         else {
-            // Initialize the QJSEngine
-            //QJSEngine engine;
             history_expression = displayVal;
-
 
             QJSValue kk = engine.evaluate(displayVal);
             double sol = kk.toNumber();
+
+            QRegularExpressionMatch trigMatch = trigRegex.match(displayVal);
+            if (trigMatch.hasMatch() && fabs(sol) < EPSILON) {
+                sol = 0; // Adjust near-zero results to zero
+            }
+
             ui->Display->setText(QString::number(sol));
 
             final_history = history_expression + " = " + QString::number(sol);
@@ -427,15 +303,6 @@ void Calculator::EqualButtonPressed(){
         QString expression = currentExpression;
 
         history_expression = displayExpression;
-        // Replace any trigonometric function references with the proper Math functions
-        //expression.replace("sin", "Math.sin");
-        //expression.replace("cos", "Math.cos");
-        //expression.replace("tan", "Math.tan");
-        //expression.replace("asin", "Math.asin");
-        //expression.replace("acos", "Math.acos");
-        //expression.replace("atan", "Math.atan");
-        //expression.replace("atan2", "Math.atan2");
-        //qDebug() << openParenthesesCount << closeparenthesesCount;
 
         // while loop that closes all the parentheses that are still open
         if (openParenthesesCount > closeparenthesesCount){
@@ -466,6 +333,12 @@ void Calculator::EqualButtonPressed(){
         }
         else {
             double solution = result.toNumber();
+
+            QRegularExpressionMatch trigMatch = trigRegex.match(expression);
+            if (trigMatch.hasMatch() && fabs(solution) < EPSILON) {
+                solution = 0; // Adjust near-zero results to zero
+            }
+
             // Display the result in the UI
             ui->Display->setText(QString::number(solution));
 
@@ -488,33 +361,10 @@ void Calculator::EqualButtonPressed(){
     // reset the parentheses back to zero for the next operations
     openParenthesesCount = 0;
     closeparenthesesCount = 0;
-
-    //qDebug() << openParenthesesCount << closeparenthesesCount;
-
 }
 
-// It makes some issues -
 void Calculator::ChangeNumberSign(){
-    /*
-    QString displayVal = ui->Display->text(); //get the value in the display
 
-    // check whats inside RegExp - regular expression
-    QRegularExpression regex("[-]?[0-9.]*");
-
-    QRegularExpressionMatch match = regex.match(displayVal); // perform the match
-
-    if (match.hasMatch() && match.captured(0) == displayVal){
-        double dblDisplayVal = displayVal.toDouble(); // switch display to double
-        double dblDisplayValSign = dblDisplayVal * (-1); // multiply it by -1 to get the negative value
-
-        // display it
-        //ui->Display->setText(QString::number(dblDisplayValSign));
-        currentExpression = "("+QString::number(dblDisplayValSign)+")";
-        displayExpression = "("+QString::number(dblDisplayValSign)+")";
-        //ui->Display->setText(QString::number(dblDisplayValSign));
-        ui->Display->setText(displayExpression);
-    }
-    */
     QString displayVal = ui->Display->text(); // Get the value in the display
 
     // Regular expression to find the last number in the expression
@@ -623,48 +473,25 @@ void Calculator::DecimalButtonPressed(){
             //ui->Display->setText("0.");
             displayVal += "0.";
         }
-        // if the current value doesn't already contain a decimal point, add one
-        //else if (!displayVal.contains('.')){
-            //ui->Display->setText(displayVal + ".");
-        //    displayVal += ".";
-        //}
+
         // if user add . and doesn't a number after it consider it as x.0
         else if (displayVal.endsWith(".")) {
             //ui->Display->setText(displayVal + "0");
             displayVal += "0";
         }
+
         else if (endsWithInteger(displayVal)){
             displayVal += ".";
         }
-        // If the display already has a decimal and a number after it, allow adding more digits
-        //else if (displayVal.contains('.') && !displayVal.endsWith(".")) {
-            // Only append decimal numbers if the current number is valid and ends with a digit
-            //ui->Display->setText(displayVal);
     }
 
     //}
     currentExpression = displayVal;
     displayExpression = displayVal;
     ui->Display->setText(displayExpression);
-    //ui->Display->setText(displayExpression);
 
     DecimalTrigger = false;
 
-    /*
-     *
-    // If the current value is empty or just contains a negative sign, set it to "0."
-    if (displayVal.isEmpty() || displayVal == "-") {
-        currentExpression += "0.";  // Append "0." if it's the first decimal input
-    }
-    // If there is no decimal in the current input, append the decimal
-    else if (!displayVal.contains('.')) {
-        currentExpression += ".";
-    }
-
-    // Update the display with the current expression
-    ui->Display->setText(currentExpression);
-
-    */
 }
 
 // helper method to check if the last thing is a number
@@ -690,13 +517,6 @@ void Calculator::PrenthesesPressed(){
     // get curtrent expression
     QString displayVal = ui->Display->text();
 
-    /*
-    // Case 1: If the expression ends with a number or a closing parenthesis, we can open a parenthesis.
-    if (displayVal.isEmpty() || displayVal.endsWith("+") || displayVal.endsWith("-") || displayVal.endsWith("x") || displayVal.endsWith("÷")){
-        currentExpression += "(";
-        displayExpression += "(";
-    }
-    */
     // Case 1: If the last character is an operator or the display is empty, we can open a parenthesis.
     if (displayVal.isEmpty() || isOperator(displayVal[displayVal.length() - 1]) || displayVal.endsWith("(") || (displayVal.length() == 1 && displayVal.endsWith('0'))) {
         currentExpression += "(";  // Add opening parenthesis
@@ -753,37 +573,6 @@ void Calculator::TrigButtonPressed(){
     QPushButton *button = (QPushButton *)sender();
     QString butVal = button->text();
     QString displayValue = butVal;
-
-    /*
-    // which one was clicked on
-    if (QString::compare(butVal, "sin", Qt::CaseInsensitive) == 0){
-        butVal = "Math.sin";
-        SinTrigger = true;
-    }
-    else if (QString::compare(butVal, "cos", Qt::CaseInsensitive) == 0){
-        butVal = "Math.cos";
-        CosTrigger = true;
-    }
-    else if (QString::compare(butVal, "tan", Qt::CaseInsensitive) == 0){
-        butVal = "Math.tan";
-        TanTrigger = true;
-    }
-    else if (QString::compare(butVal, "ln", Qt::CaseInsensitive) == 0){
-        butVal = "ln(";
-        LnTrigger = true;
-    }
-    else if (QString::compare(butVal, "log", Qt::CaseInsensitive) == 0){
-        butVal = "log(";
-        LogTrigger = true;
-    }
-    //ui->Display->setText(""); // clear display because we are about to enter a new number
-
-
-    // Append the operator to the current expression and update the display
-    currentExpression += butVal;  // Add spaces around operators for better formatting
-    displayExpression += displayValue; // for looks - display
-    ui->Display->setText(displayExpression);
-    */
 
     // Determine which trig function was pressed and replace with the corresponding JS Math function
     if (QString::compare(butVal, "sin", Qt::CaseInsensitive) == 0) {

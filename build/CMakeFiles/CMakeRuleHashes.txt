@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+2e0a8e1529cfefaf2b12dbbcee630ede .qt/qml_imports/calculator_build.cmake
+824852591a96f3c4dc6729a6246c71a8 CMakeFiles/calculator_autogen
+f2031520aa804417661e075a9b4e8224 CMakeFiles/calculator_qmlimportscan

@@ -1,0 +1,9 @@
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/rebuild_cache.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/calculator.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/calculator_qmlimportscan.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/install/local.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/install.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/edit_cache.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/list_install_components.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/install/strip.dir
+C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/CMakeFiles/calculator_autogen.dir

@@ -1,0 +1,17 @@
+[
+{
+  "directory": "C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_QMLINTEGRATION_LIB -DQT_QML_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/calculator.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\calculator.dir\\calculator_autogen\\mocs_compilation.cpp.obj -c C:\\Users\\Essaw\\DT\\Desktop\\KU_Classes\\Fall_2024\\group_project348\\build\\calculator_autogen\\mocs_compilation.cpp",
+  "file": "C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build/calculator_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_QMLINTEGRATION_LIB -DQT_QML_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/calculator.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\calculator.dir\\main.cpp.obj -c C:\\Users\\Essaw\\DT\\Desktop\\KU_Classes\\Fall_2024\\group_project348\\calculator\\main.cpp",
+  "file": "C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/calculator/main.cpp"
+},
+{
+  "directory": "C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_QMLINTEGRATION_LIB -DQT_QML_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64 @CMakeFiles/calculator.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\calculator.dir\\calculator.cpp.obj -c C:\\Users\\Essaw\\DT\\Desktop\\KU_Classes\\Fall_2024\\group_project348\\calculator\\calculator.cpp",
+  "file": "C:/Users/Essaw/DT/Desktop/KU_Classes/Fall_2024/group_project348/calculator/calculator.cpp"
+}
+]
