@@ -2,9 +2,7 @@
 --------------------------------------------------------------------------------------------------------------------------------
     09/26/24     |           Project Management Plan                    |           Yoseph, Mahdi, Shane, Beckett, Janna
     10/16/24     |            Project Requirements                      |           Yoseph, Mahdi, Shane, Beckett, Janna
-    10/17/24     |            Project Requirements                      |           Yoseph, Mahdi, Shane, Beckett, Janna
     10/20/24     |        Complete Project Requirements                 |           Yoseph, Mahdi, Shane, Beckett, Janna
-    11/03/24     |        Project Architecture and Design               |           Yoseph, Mahdi, Shane, Beckett, Janna
     11/08/24     |        Project Architecture and Design               |           Yoseph, Mahdi, Shane, Beckett
     11/18/24     |Project Implementation: Fix bugs and run test cases   |           Yoseph, Mahdi, Shane, Beckett, Janna
     11/18/24     |      Test Cases & User Manual Document Drafting      |           Yoseph, Mahdi, Shane, Beckett, Janna
