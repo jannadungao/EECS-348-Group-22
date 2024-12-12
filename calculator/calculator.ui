@@ -809,8 +809,8 @@ QPushButton:pressed {
     </property>
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>50</y>
+      <x>630</x>
+      <y>60</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -840,8 +840,7 @@ QPushButton:pressed {
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>../../../../../../Downloads/backspace_29dp_57BA29_FILL0_wght400_GRAD0_opsz24.svg</normaloff>../../../../../../Downloads/backspace_29dp_57BA29_FILL0_wght400_GRAD0_opsz24.svg</iconset>
+     <iconset theme="QIcon::ThemeIcon::EditClear"/>
     </property>
     <property name="iconSize">
      <size>
